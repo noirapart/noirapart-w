@@ -1,67 +1,77 @@
-# NOIR A PART Web
+# NOIR A PART Website
 
-NOIR A PART is a bilingual editorial gallery site for African and Afro-diasporic art, culture, exhibitions, interviews, and artist profiles.
+This is the website for NOIR A PART, a cultural platform dedicated to African and Afro-diasporic art.
 
-## Tech Stack
+The site presents exhibitions, interviews, artist profiles, and ways for visitors to get in touch.
 
-- Next.js 15 App Router
-- React 19
-- Tailwind CSS 4
-- Motion for page and interaction animation
-- Lucide React icons
+## What Visitors Can Do
 
-## Getting Started
+- Discover current and past exhibitions.
+- Read interviews with artists and cultural voices.
+- Browse artist profiles.
+- Switch between French and English.
+- Use light or dark mode.
+- Prepare an email to contact NOIR A PART.
+- Prepare an email to join the newsletter.
 
-Install dependencies:
+## Main Pages
 
-```bash
-npm install
-```
+### Home
 
-Run the local development server:
+Introduces NOIR A PART and guides visitors to the main areas of the site.
 
-```bash
-npm run dev -- -p 3002 -H 127.0.0.1
-```
+### Exhibitions
 
-Open:
+Shows featured, current, upcoming, and past exhibitions. Visitors can open each exhibition to read more details.
+
+### Interviews
+
+Shows editorial conversations with artists and thinkers. Visitors can open each interview to read the full text.
+
+### Artists
+
+Shows artist profiles, locations, disciplines, biographies, and contact prompts.
+
+## Accessibility and Usability
+
+The site has been updated so it is easier to use for more people:
+
+- Cards can be opened with a keyboard.
+- Pop-up detail windows can be closed with Escape.
+- Keyboard focus is visible.
+- Motion is reduced for visitors who prefer less animation.
+- Contact and newsletter actions now open email drafts instead of pretending a message was already sent.
+
+## Previewing the Site
+
+If the site is running locally, open:
 
 ```text
 http://127.0.0.1:3002
 ```
 
-Build for production:
+## For Maintainers
+
+Install the project:
+
+```bash
+npm install
+```
+
+Start the local preview:
+
+```bash
+npm run dev -- -p 3002 -H 127.0.0.1
+```
+
+Check that the site builds:
 
 ```bash
 npm run build
 ```
 
-## Project Structure
-
-```text
-app/          Next.js routes, layout, global styles
-components/   Shared UI and page sections
-contexts/     Language context
-lib/          Translations, utilities, shared config
-public/       Runtime image assets
-Assets/       Source image assets
-```
-
-## UX and Accessibility Notes
-
-- Core cards open content in accessible dialogs with focus trapping, Escape close, focus restore, and scroll lock.
-- Interactive cards use semantic buttons instead of click-only containers.
-- Global focus-visible styles are enabled for keyboard navigation.
-- Reduced-motion preferences are respected through MotionConfig and CSS.
-- Contact and newsletter forms prepare prefilled email drafts instead of showing false sent/subscribed states.
-- Google-hosted runtime font loading was removed so production builds work offline.
-
-## Contact Config
-
-The public contact address is defined in:
+The public contact email is set in:
 
 ```text
 lib/contact.ts
 ```
-
-Update `CONTACT_EMAIL` there when the production inbox is final.
