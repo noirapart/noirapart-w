@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* NOIR A PART brand palette */
+  --color-brand:       #7a0f1b;   /* signature red */
+  --color-brand-deep:  #5e0c15;   /* depth red */
+  --color-gallery:     #f6f2f0;   /* gallery white – warm off-white */
+  --color-ink:         #1a0a0d;   /* near-black with warm undertone */
+  --color-blush:       #fff4f5;   /* soft red accent */
+
+  --font-display: Georgia, 'Times New Roman', ui-serif, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:where(a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid #7a0f1b;
+  outline-offset: 4px;
+}
+
+:where(input, select, textarea):focus-visible {
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: #d4cac4; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb { background-color: #3a1a1f; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Selection */
+::selection { background: #7a0f1b; color: #fff; }
+.dark ::selection { background: #7a0f1b; color: #fff; }
