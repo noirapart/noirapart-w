@@ -1,12 +1,12 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Instagram, Mail, ArrowRight } from 'lucide-react'
 import { useLang } from '@/contexts/LanguageContext'
 import { useTranslations } from '@/lib/translations'
 import { CONTACT_EMAIL } from '@/lib/contact'
+import Logo from '@/components/Logo'
 
 export default function Footer() {
   const { lang } = useLang()
@@ -40,20 +40,13 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-blush dark:bg-ink/80 pt-16 md:pt-20 pb-32 md:pb-10 border-t border-ink/8 dark:border-gallery/8">
+    <footer className="bg-blush dark:bg-ink-card pt-16 md:pt-20 pb-32 md:pb-10 border-t border-ink/8 dark:border-gallery/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Brand + Newsletter */}
           <div className="md:col-span-4">
-            <Link href="/">
-              <Image
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/062070a3-b4f9-4496-88cf-dfad7efa126f_320w.png"
-                alt="NOIR A PART"
-                width={176}
-                height={72}
-                sizes="176px"
-                className="h-16 md:h-[72px] w-auto mb-6 mix-blend-multiply dark:invert dark:mix-blend-screen"
-              />
+            <Link href="/" className="inline-block mb-6">
+              <Logo variant="footer" />
             </Link>
             <p className="text-ink/50 dark:text-gallery/50 text-sm mb-6 max-w-xs leading-relaxed">
               {t('footer.newsletter.copy')}

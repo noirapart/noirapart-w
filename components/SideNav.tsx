@@ -11,8 +11,9 @@ export default function SideNav() {
   const sections = [
     { id: 'hero', label: t('sidenav.hero') },
     { id: 'plateforme', label: t('sidenav.plateforme') },
-    { id: 'contact', label: t('sidenav.contact') },
     { id: 'manifeste', label: t('sidenav.manifeste') },
+    { id: 'films', label: t('sidenav.films') },
+    { id: 'contact', label: t('sidenav.contact') },
   ]
 
   const [active, setActive] = useState('hero')

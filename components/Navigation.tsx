@@ -2,11 +2,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'motion/react'
 import { Moon, Sun, Home, Images, Mic2, Users, Mail } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLang } from '@/contexts/LanguageContext'
 import { useTranslations } from '@/lib/translations'
+import Logo from '@/components/Logo'
 
 export default function Navigation() {
   const [isDark, setIsDark] = useState(false)
@@ -33,11 +33,9 @@ export default function Navigation() {
 
   useEffect(() => {
     const saved = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    if (saved === 'dark' || (!saved && prefersDark)) {
-      document.documentElement.classList.add('dark')
-      setIsDark(true)
-    }
+    const dark = saved === 'dark'
+    document.documentElement.classList.toggle('dark', dark)
+    setIsDark(dark)
   }, [])
 
   useEffect(() => {
@@ -75,25 +73,13 @@ export default function Navigation() {
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
           isTransparent
             ? 'bg-transparent border-b border-transparent'
-            : 'bg-gallery/92 dark:bg-ink/92 backdrop-blur-2xl border-b border-ink/8 dark:border-gallery/8 shadow-sm'
+            : 'bg-gallery/92 dark:bg-ink-soft/95 backdrop-blur-2xl border-b border-ink/8 dark:border-gallery/10 shadow-sm'
         }`}
       >
           <div className="max-w-7xl mx-auto px-5 sm:px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="z-50 flex items-center rounded-md" aria-label="NOIR A PART">
-            <Image
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/062070a3-b4f9-4496-88cf-dfad7efa126f_320w.png"
-              alt="NOIR A PART"
-              width={176}
-              height={72}
-              sizes="(max-width: 768px) 156px, 184px"
-              className={`h-[58px] sm:h-16 md:h-[72px] w-auto origin-left transition-all duration-300 ${
-                isTransparent
-                  ? 'brightness-0 invert drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]'
-                  : 'mix-blend-multiply dark:invert dark:mix-blend-screen'
-              }`}
-              priority
-            />
+            <Logo variant="nav" transparent={isTransparent} priority />
           </Link>
 
           {/* Desktop links */}
@@ -156,7 +142,7 @@ export default function Navigation() {
 
       {/* Mobile bottom nav */}
       <nav
-        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-gallery/95 dark:bg-ink/95 backdrop-blur-xl border-t border-ink/10 dark:border-gallery/10 pb-safe"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-gallery/95 dark:bg-ink-soft/95 backdrop-blur-xl border-t border-ink/10 dark:border-gallery/10 pb-safe"
         aria-label={t('nav.menu')}
       >
         <div className="flex items-center justify-around h-16 px-1.5">

@@ -20,7 +20,7 @@ export default function ValueProps() {
   const isInView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section className="py-14 md:py-20 border-b border-ink/8 dark:border-gallery/8">
+    <section className="py-14 md:py-20 bg-gallery dark:bg-ink-card border-b border-ink/8 dark:border-gallery/8">
       <div className="max-w-7xl mx-auto px-6">
         <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center md:text-left">
           {props.map(({ Icon, title, description }, i) => (
