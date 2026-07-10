@@ -78,16 +78,19 @@ export default function Navigation() {
             : 'bg-gallery/92 dark:bg-ink/92 backdrop-blur-2xl border-b border-ink/8 dark:border-gallery/8 shadow-sm'
         }`}
       >
-          <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="z-50 flex items-center">
+          <Link href="/" className="z-50 flex items-center rounded-md" aria-label="NOIR A PART">
             <Image
               src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/062070a3-b4f9-4496-88cf-dfad7efa126f_320w.png"
               alt="NOIR A PART"
-              width={140}
-              height={56}
-              className={`h-14 md:h-16 w-auto transition-all ${
-                isTransparent ? 'brightness-0 invert' : 'mix-blend-multiply dark:invert dark:mix-blend-screen'
+              width={176}
+              height={72}
+              sizes="(max-width: 768px) 156px, 184px"
+              className={`h-[58px] sm:h-16 md:h-[72px] w-auto origin-left transition-all duration-300 ${
+                isTransparent
+                  ? 'brightness-0 invert drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]'
+                  : 'mix-blend-multiply dark:invert dark:mix-blend-screen'
               }`}
               priority
             />
@@ -141,8 +144,9 @@ export default function Navigation() {
             {/* Theme */}
             <button
               onClick={toggleTheme}
-              className={`p-2.5 transition-colors ${textBase}`}
-              aria-label="Toggle theme"
+              className={`p-2.5 rounded-full transition-colors hover:bg-ink/5 dark:hover:bg-gallery/8 ${textBase}`}
+              aria-label={t('nav.themeToggle')}
+              aria-pressed={isDark}
             >
               {isDark ? <Sun size={20} strokeWidth={1.5} /> : <Moon size={20} strokeWidth={1.5} />}
             </button>
@@ -155,7 +159,7 @@ export default function Navigation() {
         className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-gallery/95 dark:bg-ink/95 backdrop-blur-xl border-t border-ink/10 dark:border-gallery/10 pb-safe"
         aria-label={t('nav.menu')}
       >
-        <div className="flex items-center justify-around h-16 px-2">
+        <div className="flex items-center justify-around h-16 px-1.5">
           {mobileNavItems.map(({ href, label, Icon }) => {
             const isContact = href === '/#contact'
             const isActive = isContact
@@ -166,12 +170,12 @@ export default function Navigation() {
                 key={href}
                 href={href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl transition-colors ${
+                className={`min-w-0 flex-1 flex flex-col items-center gap-0.5 px-1 py-2 rounded-xl transition-colors ${
                   isActive ? 'text-brand' : 'text-ink/40 dark:text-gallery/40'
                 }`}
               >
                 <Icon size={20} strokeWidth={isActive ? 2 : 1.5} />
-                <span className="text-[10px] font-medium">{label}</span>
+                <span className="max-w-full truncate text-[10px] font-medium">{label}</span>
               </Link>
             )
           })}

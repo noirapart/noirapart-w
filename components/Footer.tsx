@@ -49,9 +49,10 @@ export default function Footer() {
               <Image
                 src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/062070a3-b4f9-4496-88cf-dfad7efa126f_320w.png"
                 alt="NOIR A PART"
-                width={140}
-                height={56}
-                className="h-14 w-auto mb-6 mix-blend-multiply dark:invert dark:mix-blend-screen"
+                width={176}
+                height={72}
+                sizes="176px"
+                className="h-16 md:h-[72px] w-auto mb-6 mix-blend-multiply dark:invert dark:mix-blend-screen"
               />
             </Link>
             <p className="text-ink/50 dark:text-gallery/50 text-sm mb-6 max-w-xs leading-relaxed">

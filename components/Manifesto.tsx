@@ -61,12 +61,12 @@ export default function Manifesto() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="w-full lg:w-1/2 order-1 lg:order-2"
           >
-            <div className="relative aspect-[4/3] sm:aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-gallery/10 group">
+            <div className="relative aspect-[4/3] sm:aspect-square md:aspect-[4/3] rounded-xl overflow-hidden border border-gallery/10 group">
               <Image
                 src="/artist-pic.jpg"
                 alt="Artistes NOIR A PART"
                 fill
-                className="object-cover opacity-85 grayscale group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-700"
+                className="object-cover opacity-90 md:grayscale md:group-hover:grayscale-0 group-hover:opacity-95 transition-all duration-700"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-ink/30 to-transparent" />
