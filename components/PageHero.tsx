@@ -12,13 +12,13 @@ const keyMap: Record<PageKey, { label: string; title: string; desc: string }> = 
   artistes:    { label: 'page.artistes.label',    title: 'page.artistes.title',    desc: 'page.artistes.desc'    },
 }
 
-export default function PageHero({ pageKey }: { pageKey: PageKey }) {
+export default function PageHero({ pageKey, compact }: { pageKey: PageKey; compact?: boolean }) {
   const { lang } = useLang()
   const t = useTranslations(lang)
   const keys = keyMap[pageKey]
 
   return (
-    <section className="bg-ink pt-32 pb-20 px-6">
+    <section className={`bg-ink pt-32 px-6 ${compact ? 'pb-4' : 'pb-20'}`}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -36,10 +36,10 @@ export default function PageHero({ pageKey }: { pageKey: PageKey }) {
             transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="h-0.5 bg-brand rounded-full mb-8"
           />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-normal text-gallery mb-6 max-w-3xl leading-none">
+          <h1 className={`font-display text-4xl sm:text-5xl md:text-7xl font-normal text-gallery max-w-3xl leading-none ${compact ? 'mb-3' : 'mb-6'}`}>
             {t(keys.title as Parameters<typeof t>[0])}
           </h1>
-          <p className="text-base md:text-lg text-gallery/45 max-w-xl leading-relaxed font-light">
+          <p className={`text-base md:text-lg text-gallery/45 max-w-xl leading-relaxed font-light ${compact ? 'mb-0' : ''}`}>
             {t(keys.desc as Parameters<typeof t>[0])}
           </p>
         </motion.div>

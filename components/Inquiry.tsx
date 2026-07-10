@@ -50,7 +50,7 @@ export default function Inquiry() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-gallery py-16 text-ink dark:bg-ink dark:text-gallery md:py-24 border-y border-ink/10 dark:border-gallery/10">
+    <section id="contact" className="relative overflow-hidden bg-gallery py-16 text-ink dark:bg-ink-soft dark:text-gallery md:py-24 border-y border-ink/10 dark:border-gallery/10">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand/80" />
       <div className="pointer-events-none absolute bottom-0 left-0 top-0 hidden w-2 bg-brand md:block" />
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
@@ -65,7 +65,11 @@ export default function Inquiry() {
               {t('inquiry.label')}
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-ink dark:text-gallery mb-5 md:mb-6 leading-tight">
-              {t('inquiry.title1')}<br />{t('inquiry.title2')}
+              {lang === 'en' || !t('inquiry.title2') ? (
+                <span className="whitespace-nowrap">{t('inquiry.title1')}{t('inquiry.title2')}</span>
+              ) : (
+                <>{t('inquiry.title1')}<br />{t('inquiry.title2')}</>
+              )}
             </h2>
             <p className="text-base md:text-lg text-ink/75 dark:text-gallery/76 leading-relaxed max-w-xl">
               {t('inquiry.subtitle')}
@@ -115,7 +119,7 @@ export default function Inquiry() {
             initial={{ opacity: 0, x: 32 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-xl border border-ink/12 bg-white p-5 shadow-[0_24px_70px_rgba(26,10,13,0.10)] dark:border-gallery/14 dark:bg-gallery/[0.04] dark:shadow-none sm:p-6 md:p-8"
+            className="rounded-xl border border-ink/12 bg-white p-5 shadow-[0_24px_70px_rgba(26,10,13,0.10)] dark:border-gallery/14 dark:bg-ink-card dark:shadow-none sm:p-6 md:p-8"
           >
             {draftOpened ? (
               <motion.div

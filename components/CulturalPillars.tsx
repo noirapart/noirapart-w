@@ -15,6 +15,7 @@ type Pillar = {
   description: string
   src: string
   alt: string
+  badge?: string
 }
 
 function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
@@ -35,6 +36,11 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
         <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-ink/10" />
       </div>
       <div className="mt-auto p-5 sm:p-8 relative z-10 text-white">
+        {pillar.badge && (
+          <span className="inline-block mb-3 text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border border-white/20 bg-white/10 text-white/80">
+            {pillar.badge}
+          </span>
+        )}
         <div className="flex items-center justify-between gap-4 mb-3">
           <h3 className="text-2xl font-medium">{pillar.title}</h3>
           <ArrowUpRight size={22} strokeWidth={1.5} className="shrink-0 opacity-70 md:opacity-0 translate-x-0 md:translate-x-1 md:-translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 text-brand" />
@@ -58,7 +64,7 @@ export default function CulturalPillars() {
       href: '/expositions',
       title: t('nav.expositions'),
       description: t('pillars.expositions.description'),
-      src: '/expo-pic.jpg',
+      src: '/exhibitions/exode/cover.jpg',
       alt: 'Expositions',
     },
     {
@@ -67,18 +73,19 @@ export default function CulturalPillars() {
       description: t('pillars.entretiens.description'),
       src: '/entretiens-pic.jpg',
       alt: 'Entretiens',
+      badge: t('entretien.comingSoon'),
     },
     {
       href: '/artistes',
       title: t('nav.artistes'),
       description: t('pillars.artistes.description'),
-      src: '/artist-pic.jpg',
+      src: '/exhibitions/womheart/cover.jpg',
       alt: 'Artistes',
     },
   ]
 
   return (
-    <section id="plateforme" className="py-16 md:py-28 px-6 max-w-7xl mx-auto">
+    <section id="plateforme" className="py-16 md:py-28 px-6 max-w-7xl mx-auto bg-gallery dark:bg-ink">
       <motion.div
         ref={titleRef}
         initial={{ opacity: 0, y: 24 }}
