@@ -15,6 +15,10 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
   const { lang } = useLang()
   const t = useTranslations(lang)
+  const titleLines = t('hero.title').split('\n')
+  const titleClassName = `font-display text-4xl sm:text-5xl ${
+    lang === 'fr' ? 'md:text-6xl lg:text-7xl max-w-6xl' : 'md:text-7xl lg:text-8xl max-w-4xl'
+  } leading-[0.95] text-white font-normal mb-6`
 
   return (
     <header ref={ref} id="hero" className="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-ink">
@@ -38,9 +42,13 @@ export default function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-none text-white font-normal mb-6 max-w-4xl"
+          className={titleClassName}
         >
-          {t('hero.title')}
+          {titleLines.map((line) => (
+            <span key={line} className="block md:whitespace-nowrap">
+              {line}
+            </span>
+          ))}
         </motion.h1>
 
         <motion.p
