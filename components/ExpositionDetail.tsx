@@ -30,6 +30,7 @@ export default function ExpositionDetail({ exposition }: { exposition: Expositio
   const { lang } = useLang()
   const t = useTranslations(lang)
   const expo = getLocalizedExposition(exposition, lang)
+  const isTitleCover = expo.id === 'broken-lineage'
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [selectedArtist, setSelectedArtist] = useState<LocalizedArtiste | null>(null)
 
@@ -51,13 +52,20 @@ export default function ExpositionDetail({ exposition }: { exposition: Expositio
           </Link>
 
           <div className="relative h-[45vh] min-h-[280px] max-h-[520px] rounded-2xl overflow-hidden mb-10">
-            <Image src={expo.coverImage} alt={expo.title} fill className="object-cover" sizes="100vw" priority />
+            <Image
+              src={expo.coverImage}
+              alt={expo.title}
+              fill
+              className={isTitleCover ? 'object-contain px-5 pb-16 pt-6 sm:px-12 md:px-20' : 'object-cover'}
+              sizes="100vw"
+              priority
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <span className={`text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border ${STATUS_COLORS[expo.status]} mb-3 inline-block`}>
                 {t(STATUS_KEYS[expo.status])}
               </span>
-              <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-normal text-gallery leading-tight max-w-4xl">
+              <h1 className={isTitleCover ? 'sr-only' : 'font-display text-2xl sm:text-4xl md:text-5xl font-normal text-gallery leading-tight max-w-4xl'}>
                 {expo.title}
               </h1>
               <p className="text-gallery/60 mt-2 max-w-2xl">{expo.subtitle}</p>

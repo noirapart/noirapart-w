@@ -40,6 +40,7 @@ function ExpoCard({
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const isTitleCover = expo.id === 'broken-lineage'
 
   if (featured) {
     return (
@@ -54,12 +55,14 @@ function ExpoCard({
           href={`/expositions/${expo.id}`}
           className="group block text-left"
         >
-          <div className="relative h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border border-ink/10 dark:border-gallery/10">
+          <div className="relative h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border border-ink/10 bg-ink dark:border-gallery/10">
             <Image
               src={expo.coverImage}
               alt={expo.title}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className={isTitleCover
+                ? 'object-contain px-5 pb-24 pt-8 transition-transform duration-700 sm:px-12 sm:pb-28 md:px-20'
+                : 'object-cover transition-transform duration-700 group-hover:scale-[1.03]'}
               sizes="100vw"
               priority
             />
@@ -71,7 +74,7 @@ function ExpoCard({
                     {t(STATUS_KEYS[expo.status])}
                   </span>
                 </div>
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-normal text-white mb-1 max-w-3xl">{expo.title}</h2>
+                <h2 className={isTitleCover ? 'sr-only' : 'font-display text-2xl sm:text-3xl md:text-4xl font-normal text-white mb-1 max-w-3xl'}>{expo.title}</h2>
                 <p className="text-neutral-300 text-sm font-light max-w-2xl">{expo.subtitle}</p>
               </div>
               <div className="flex items-center gap-2 text-white/80 text-sm font-medium shrink-0 group-hover:text-white transition-colors">

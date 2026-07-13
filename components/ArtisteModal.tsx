@@ -40,7 +40,20 @@ export default function ArtisteModal({ artiste, onClose, t }: ArtisteModalProps)
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative h-64 sm:h-80">
-          <Image src={artiste.image} alt={artiste.name} fill className="object-cover object-top" sizes="600px" />
+          {artiste.image ? (
+            <Image src={artiste.image} alt={artiste.name} fill className="object-cover object-top" sizes="600px" />
+          ) : (
+            <div
+              role="img"
+              aria-label={`${artiste.name} — ${t('artistes.noPhoto')}`}
+              className="absolute inset-0 flex flex-col items-center justify-center bg-ink-soft text-gallery"
+            >
+              <span className="mb-5 h-px w-12 bg-brand" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gallery/55">
+                {t('artistes.noPhoto')}
+              </span>
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <button
             type="button"
@@ -68,17 +81,18 @@ export default function ArtisteModal({ artiste, onClose, t }: ArtisteModalProps)
             </div>
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-ink/35 dark:text-gallery/35 mb-3">{t('artistes.modal.exhibitions')}</h3>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {artiste.exhibitionLabels.map((label) => (
-                <span key={label} className="px-3 py-1.5 rounded-full border border-brand/25 bg-brand/5 text-xs font-medium text-brand">
-                  {label}
-                </span>
-              ))}
+          {artiste.exhibitionLabels.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-xs font-semibold tracking-widest uppercase text-ink/35 dark:text-gallery/35 mb-3">{t('artistes.modal.exhibitions')}</h3>
+              <div className="flex flex-wrap gap-2">
+                {artiste.exhibitionLabels.map((label) => (
+                  <span key={label} className="px-3 py-1.5 rounded-full border border-brand/25 bg-brand/5 text-xs font-medium text-brand">
+                    {label}
+                  </span>
+                ))}
+              </div>
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{artiste.bio}</p>
-          </div>
+          )}
 
           <Link
             href="/#contact"

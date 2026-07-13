@@ -61,7 +61,7 @@ export const expositions: Exposition[] = [
   {
     id: 'broken-lineage',
     status: 'upcoming',
-    coverImage: '/exhibitions/exode/cover.jpg',
+    coverImage: '/exhibitions/broken-lineage/cover.png',
     images: [],
     tags: ['Générations', 'Héritage', 'Mondialisation', 'Technologie'],
     fr: {

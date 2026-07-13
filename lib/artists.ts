@@ -6,8 +6,23 @@ export type ExhibitionRef = 'la-genese' | 'exode' | 'womheart'
 export type Artiste = {
   id: string
   name: string
-  image: string
+  image: string | null
   exhibitions: ExhibitionRef[]
+  origin: LocalizedValue
+  based: LocalizedValue
+}
+
+type LocalizedValue = {
+  fr: string
+  en: string
+}
+
+type ArtistProfile = {
+  name: string
+  image: string | null
+  origin: LocalizedValue
+  based: LocalizedValue
+  exhibitionAliases?: string[]
 }
 
 const EXHIBITION_ORDER: ExhibitionRef[] = ['la-genese', 'exode', 'womheart']
@@ -24,19 +39,62 @@ export const EXHIBITION_LABELS: Record<ExhibitionRef, { fr: string; en: string }
   womheart: { fr: "WOM'HEART", en: "WOM'HEART" },
 }
 
-const STOCK_PORTRAITS = [
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1494790108755-2616b612b830?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop',
+const CAMEROON = { fr: 'Cameroun', en: 'Cameroon' }
+
+function basedIn(city: string): LocalizedValue {
+  return { fr: `${city}, Cameroun`, en: `${city}, Cameroon` }
+}
+
+const ARTIST_PROFILES: ArtistProfile[] = [
+  { name: 'Alida Ymele', image: '/artists/alida-ymele.webp', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Allen Wankwini', image: '/artists/allen-wankwini.jpg', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Bright Toh', image: '/artists/bright-toh.jpg', origin: CAMEROON, based: basedIn('Buea') },
+  { name: 'Carole Nkolo', image: '/artists/carole-nkolo.jpg', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Desy Danga', image: '/artists/desy-danga.jpeg', origin: CAMEROON, based: basedIn('Garoua') },
+  { name: 'Edwige Ndjeng', image: '/artists/edwige-ndjeng.jpg', origin: CAMEROON, based: basedIn('Douala') },
+  {
+    name: 'Erick Foguieng',
+    image: '/artists/erick-foguieng.jpg',
+    origin: CAMEROON,
+    based: basedIn('Douala'),
+    exhibitionAliases: ['Erick « FOTALE » Foguieng'],
+  },
+  {
+    name: 'Gael Keutchogue',
+    image: '/artists/gael-keutchogue.jpg',
+    origin: CAMEROON,
+    based: basedIn('Yaoundé'),
+    exhibitionAliases: ['Gael « Keutch » Keutchogue'],
+  },
+  { name: 'Jacques Eyoum Madiba', image: '/artists/jacques-eyoum-madiba.jpg', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Jean David Nkot', image: '/artists/jean-david-nkot.png', origin: CAMEROON, based: basedIn('Douala') },
+  { name: 'Lauriane Yougang', image: '/artists/lauriane-yougang.webp', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Leuna Noumbimboo', image: '/artists/leuna-noumbimboo.jpg', origin: CAMEROON, based: basedIn('Douala') },
+  {
+    name: 'Nourane Hassan',
+    image: '/artists/nourane-hassan.jpeg',
+    origin: { fr: 'Égypte', en: 'Egypt' },
+    based: { fr: 'Arabie saoudite', en: 'Saudi Arabia' },
+  },
+  {
+    name: 'Paul Onobiono',
+    image: '/artists/paul-onobiono.jpg',
+    origin: CAMEROON,
+    based: basedIn('Yaoundé'),
+    exhibitionAliases: ['Paul « Mouono » Onobiono'],
+  },
+  { name: 'Raoul Wansi', image: '/artists/raoul-wansi.jpg', origin: CAMEROON, based: basedIn('Douala') },
+  { name: 'Renaud Atemengue', image: null, origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'Saint Babila', image: '/artists/saint-babila.jpg', origin: CAMEROON, based: basedIn('Yaoundé') },
+  { name: 'STOOF', image: '/artists/stoof.png', origin: CAMEROON, based: basedIn('Douala') },
+  {
+    name: 'Theodora Mouafo',
+    image: null,
+    origin: CAMEROON,
+    based: basedIn('Yaoundé'),
+    exhibitionAliases: ['Théodora Mouafo'],
+  },
+  { name: 'Zak Ndam', image: '/artists/zak-ndam.jpg', origin: CAMEROON, based: basedIn('Douala') },
 ]
 
 function slugify(name: string) {
@@ -48,43 +106,45 @@ function slugify(name: string) {
     .replace(/(^-|-$)/g, '')
 }
 
-function stockImageFor(id: string) {
-  let hash = 0
-  for (let i = 0; i < id.length; i += 1) hash = (hash + id.charCodeAt(i) * (i + 1)) % STOCK_PORTRAITS.length
-  return STOCK_PORTRAITS[hash]
+function profileNames(profile: ArtistProfile) {
+  return [profile.name, ...(profile.exhibitionAliases ?? [])]
 }
 
-function buildArtist(name: string, exhibitions: ExhibitionRef[]): Artiste {
-  const id = slugify(name)
-  return { id, name, image: stockImageFor(id), exhibitions }
+function exhibitionsForProfile(profile: ArtistProfile): ExhibitionRef[] {
+  const names = new Set(profileNames(profile))
+  return EXHIBITION_ORDER.filter((id) => {
+    const expo = expositions.find((item) => item.id === id) as Exposition
+    return expo.fr.artists.some((name) => names.has(name))
+  })
+}
+
+function buildArtist(profile: ArtistProfile): Artiste {
+  return {
+    id: slugify(profile.name),
+    name: profile.name,
+    image: profile.image,
+    exhibitions: exhibitionsForProfile(profile),
+    origin: profile.origin,
+    based: profile.based,
+  }
 }
 
 export function getArtists(): Artiste[] {
-  const byName = new Map<string, Set<ExhibitionRef>>()
-
-  for (const expo of expositions) {
-    if (expo.id === 'broken-lineage') continue
-    const ref = expo.id as ExhibitionRef
-    for (const name of expo.fr.artists) {
-      if (!byName.has(name)) byName.set(name, new Set())
-      byName.get(name)!.add(ref)
-    }
-  }
-
-  return [...byName.entries()]
-    .map(([name, exhibitions]) =>
-      buildArtist(name, EXHIBITION_ORDER.filter((id) => exhibitions.has(id))),
-    )
+  return ARTIST_PROFILES
+    .map(buildArtist)
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
 
 export function getArtistByName(name: string): Artiste | undefined {
-  return getArtists().find((a) => a.name === name)
+  const profile = ARTIST_PROFILES.find((item) => profileNames(item).includes(name))
+  return profile ? buildArtist(profile) : undefined
 }
 
 export function getArtistsForExhibition(exhibitionId: ExhibitionRef): Artiste[] {
   const expo = expositions.find((e) => e.id === exhibitionId) as Exposition
-  return expo.fr.artists.map((name) => buildArtist(name, [exhibitionId]))
+  return expo.fr.artists
+    .map(getArtistByName)
+    .filter((artist): artist is Artiste => Boolean(artist))
 }
 
 export function getExhibitionSummaries(lang: Lang) {
@@ -97,16 +157,15 @@ export function getExhibitionSummaries(lang: Lang) {
       fullTitle: content.title,
       period: content.period,
       cover: EXHIBITION_COVERS[id],
-      artistCount: content.artists.length,
+      artistCount: getArtistsForExhibition(id).length,
     }
   })
 }
 
-export type LocalizedArtiste = Artiste & {
+export type LocalizedArtiste = Omit<Artiste, 'origin' | 'based'> & {
   discipline: string
   origin: string
   based: string
-  bio: string
   tags: string[]
   exhibitionLabels: string[]
 }
@@ -116,26 +175,17 @@ export function localizeArtiste(artiste: Artiste, lang: Lang): LocalizedArtiste 
   const copy = {
     fr: {
       discipline: 'Art contemporain',
-      origin: 'Cameroun',
-      based: 'Yaoundé, Cameroun',
-      bio: (names: string[]) =>
-        `${artiste.name} a participé à ${names.join(', ')} dans le cadre de La TR'ART'VERSÉE par NOIR A PART.`,
     },
     en: {
       discipline: 'Contemporary art',
-      origin: 'Cameroon',
-      based: 'Yaoundé, Cameroon',
-      bio: (names: string[]) =>
-        `${artiste.name} participated in ${names.join(', ')} as part of La TR'ART'VERSÉE by NOIR A PART.`,
     },
   }[lang]
 
   return {
     ...artiste,
     discipline: copy.discipline,
-    origin: copy.origin,
-    based: copy.based,
-    bio: copy.bio(labels),
+    origin: artiste.origin[lang],
+    based: artiste.based[lang],
     tags: labels,
     exhibitionLabels: labels,
   }
