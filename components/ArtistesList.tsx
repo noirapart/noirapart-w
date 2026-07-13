@@ -46,14 +46,29 @@ function ArtisteCard({
       aria-label={`${t('artistes.viewProfile')} : ${artiste.name}`}
     >
       <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 mb-5">
-        <Image
-          src={artiste.image}
-          alt={artiste.name}
-          fill
-          className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.04]"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/0 transition-colors duration-500" />
+        {artiste.image ? (
+          <>
+            <Image
+              src={artiste.image}
+              alt={artiste.name}
+              fill
+              className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.04]"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/0 transition-colors duration-500" />
+          </>
+        ) : (
+          <div
+            role="img"
+            aria-label={`${artiste.name} — ${t('artistes.noPhoto')}`}
+            className="absolute inset-0 flex flex-col items-center justify-center bg-ink-soft text-gallery"
+          >
+            <span className="mb-5 h-px w-12 bg-brand" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gallery/55">
+              {t('artistes.noPhoto')}
+            </span>
+          </div>
+        )}
         <div className="absolute inset-x-0 bottom-0 p-5 sm:translate-y-2 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
           <div className="bg-white/95 dark:bg-ink/95 backdrop-blur-sm rounded-xl p-4 flex items-center justify-between border border-neutral-200/50 dark:border-neutral-700/50">
             <span className="text-sm font-medium text-ink dark:text-gallery">{t('artistes.viewProfile')}</span>
